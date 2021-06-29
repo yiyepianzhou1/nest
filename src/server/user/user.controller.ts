@@ -49,4 +49,14 @@ export class UserController {
       message: 'Success',
     };
   }
+  @Get('getDataList')
+  async getDataList(): Promise<any> {
+    console.log(111)
+    const result = await this.userService.getDataList();
+    return {
+      code: 200,
+      data: result,
+      message: 'Success',
+    }
+  }
 }
