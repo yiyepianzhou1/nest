@@ -6,7 +6,10 @@ import { CreateUserDTO } from './user.dto';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('Users') private readonly userModel: Model<User>, private readonly httpService: HttpService) {}
+  constructor(
+    @InjectModel('Users') private readonly userModel: Model<User>,
+    private readonly httpService: HttpService,
+  ) {}
 
   // 查询用户信息
   async findAll(): Promise<User[]> {
@@ -31,7 +34,6 @@ export class UserService {
       return '删除成功';
     } else return '未查询到当前用户信息';
   }
-  // getDataList
   async getDataList(id?: String): Promise<any> {
     const httpUrl = 'https://api.juejin.cn/user_api/v1/author/recommend';
     const params = {
@@ -39,7 +41,9 @@ export class UserService {
       cursor: 0,
       limit: 20,
     };
-    const { data } = await this.httpService.get(httpUrl, { params }).toPromise();
+    const { data } = await this.httpService
+      .get(httpUrl, { params })
+      .toPromise();
     console.log('result', data);
     return data;
   }
