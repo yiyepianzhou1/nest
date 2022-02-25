@@ -26,15 +26,14 @@ export class UserService {
     await this.userModel.create(body);
   }
   // 删除用户信息
-  async deleteUser(id: String): Promise<string> {
+  async deleteUser(id: String | number): Promise<string> {
     const result = await this.userModel.findOneAndDelete({
       user_id: Number(id),
     });
-    if (result) {
-      return '删除成功';
-    } else return '未查询到当前用户信息';
+    return result ? '删除成功' : '未查询到当前用户信息';
   }
-  async getDataList(id?: String): Promise<any> {
+  // 转发
+  async getDataList(): Promise<any> {
     const httpUrl = 'https://api.juejin.cn/user_api/v1/author/recommend';
     const params = {
       category_id: '',
@@ -44,7 +43,6 @@ export class UserService {
     const { data } = await this.httpService
       .get(httpUrl, { params })
       .toPromise();
-    console.log('result', data);
     return data;
   }
 }

@@ -1,6 +1,4 @@
-root = true
-
+[*]
 indent_style = space
-# 缩进大小=2
 indent_size = 2
-tab_width = 2
+continuation_indent_size = 0

@@ -8,9 +8,7 @@ const userSchema = new Schema({
 });
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: 'Menuss', schema: userSchema }]),
-  ],
+  imports: [MongooseModule.forFeature([{ name: 'Menus', schema: userSchema }])],
   controllers: [MenusController],
   providers: [MenusService],
 })

@@ -6,14 +6,11 @@ import { Menu } from './menus.interface';
 
 @Injectable()
 export class MenusService {
-  constructor(
-    @InjectModel('Menuss') private readonly menusModel: Model<Menu>,
-  ) {}
+  constructor(@InjectModel('Menus') private readonly menusModel: Model<Menu>) {}
   // 查询菜单信息
   async getMenus(): Promise<Menu[]> {
     const result = await this.menusModel.find();
-    console.log(result);
-    return [];
+    return result;
   }
   // 删除菜单信息
   async delete(): Promise<string> {
